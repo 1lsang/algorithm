@@ -1,12 +1,7 @@
 function solution(clothes) {
-    const clothesObject = {};
-    clothes.forEach(([name, type])=>{
-        if (clothesObject[type]) clothesObject[type].push(name);
-        else clothesObject[type] = [name];
-    });
-    let answer = 1;
-    for(let type in clothesObject) {
-        answer *= clothesObject[type].length+1;
-    }
-    return answer-1;
+    return Object.values(
+        clothes.reduce((obj,[_, t])=>{
+            obj[t] = obj[t] ? obj[t]+1 : 1;
+            return obj
+        }, {})).reduce((acc, cur)=> acc*(cur+1), 1)-1;
 }
