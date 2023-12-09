@@ -14,7 +14,7 @@ function solution(word1, word2) {
 
     let res = 0;
     for (let i=0; i<26; i++) {
-        cnt += Math.abs(arr1[i]-arr2[i]);
+        res += Math.abs(arr1[i]-arr2[i]);
     }
 
     return res;
