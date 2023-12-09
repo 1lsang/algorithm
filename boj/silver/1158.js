@@ -1,3 +1,5 @@
+"use strict"
+
 const [N, K] = require('fs').readFileSync('./dev/stdin').toString().trim().split(' ').map(Number);
 
 function solution(N, K) {
