@@ -4,28 +4,28 @@ const inputs = require('fs').readFileSync('/dev/stdin').toString().trim().split(
 
 function solution(inputs) {
     const answer = [];
-    const isBracket = (x) => x === '(' || x === ')' || x === '[' || x === ']';
     
-    for (let [i, input] of inputs.entries()) {
+    for (let input of inputs) {
         const s = [];
-        for(let bracket of input.split('').filter(isBracket)) {
-            if (bracket === '(' || bracket === '[') s.push(bracket);
-            else if (bracket === ')') {
-                if (s.at(-1)==='(') s.pop();
-                else {
-                    answer.push('no');
+        let isValid = true;
+        for(let str of input) {
+            if (str === '(' || str === '[') s.push(str);
+            else if (str === ')') {
+                if (s.at(-1)!=='(') {
+                    isValid = false;
                     break;
                 }
+                s.pop();
             }
-            else if (bracket === ']') {
-                if (s.at(-1)==='[') s.pop();
-                else {
-                    answer.push('no');
+            else if (str === ']') {
+                if (s.at(-1)!=='[') {
+                    isValid = false;
                     break;
                 }
+                s.pop();
             }
         }
-        if (answer.length < i+1) answer.push((s.length ===0) ? 'yes' : 'no');
+        answer.push((s.length ===0 && isValid) ? 'yes' : 'no');
     }
     return answer.join('\n');
 }
