@@ -1,11 +1,14 @@
 "use strict"
 
-const inputs = require('fs').readFileSync('/dev/stdin').toString().trim().split('\n');
-const result = String(inputs[0]*inputs[1]*inputs[2]);
-const arr = Array.from({length:10}, ()=>0);
+const [A, B, C] = require('fs').readFileSync('/dev/stdin').toString().trim().split('\n').map(Number);
 
-for(let n of result) {
-    arr[Number(n)]++;
+function solution(A, B, C) {
+    const answer = Array.from({ length: 10 }, () => 0);
+    const result = String(A * B * C);
+    for(let n of result) {
+        answer[Number(n)]++;
+    }
+    return answer.join('\n');
 }
 
-arr.forEach(n=>console.log(n));
+console.log(solution(A, B, C));
