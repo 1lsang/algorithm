@@ -9,8 +9,8 @@ function solution(n, m, arr1, arr2) {
     while (i < n || j < m) {
         if (i === n) answer.push(arr2[j++]);
         else if (j === m) answer.push(arr1[i++]);
-        else if (i < n && arr1[i] <= arr2[j]) answer.push(arr1[i++]);        
-        else if (j < m && arr2[j] < arr1[i]) answer.push(arr2[j++]);
+        else if (arr1[i] <= arr2[j]) answer.push(arr1[i++]);        
+        else if (arr2[j] < arr1[i]) answer.push(arr2[j++]);
     }
 
     return answer.join(' ');
